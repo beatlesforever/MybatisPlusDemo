@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>通讯录查询</title>
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a th:href="@{/}">通讯录</a></li>
+        <li class="breadcrumb-item active">查询结果</li>
+    </ol>
+    <h2 style="text-align: center">查询结果</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">头像</th>
+            <th scope="col">姓名</th>
+            <th scope="col">电话</th>
+            <th scope="col">邮件</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contact, iterStat : ${contacts}">
+            <td th:text="${iterStat.count}"></td>
+            <td>
+                <img th:src="@{${contact.getImagePath()}}" alt="头像" class="rounded-circle" style="width: 70px; height: 70px;">
+            </td>
+            <td th:text="${contact.getName()}"></td>
+            <td th:text="${contact.getPhone()}"></td>
+            <td th:text="${contact.getEmail()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
