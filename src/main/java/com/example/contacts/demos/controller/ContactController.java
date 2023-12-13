@@ -45,12 +45,11 @@ public class ContactController {
 
     @GetMapping(path = "/contact", produces = "application/json")
     List<Contact> list(){
-        System.out.println(contactService.list());
         return contactService.list();
     }
 
     @PostMapping(path = "/contact", consumes = "application/json", produces = "application/json")
-    Contact add(@RequestBody Contact contact){
+    Contact add(@RequestBody Contact contact){ //@RequestBody Contact contact :将请求体中的数据转换成一个 Contact 对象
         contactService.save(contact);
         return contact;
     }
@@ -63,24 +62,11 @@ public class ContactController {
 
     @PutMapping(path = "/contact/{id}", consumes = "application/json", produces = "application/json")
     Contact update(@PathVariable Long id, @RequestBody Contact contact) {
+        //@PathVariable Long id : 将 URL 中 /contact/{id} 这个路径中的 {id} 部分作为方法的参数传递给后端处理方法，
+        // 并且将其转换为类型为 Long 的变量 id，
         contact.setId(id);
         contactService.updateById(contact);
         return contact;
     }
-
-
-
-
-//    @GetMapping("/search")
-//    public String search(@RequestParam String keyword, Model model) {
-//        List<Contact> contacts = contactService.list(new QueryWrapper<Contact>()
-//                .like("name", keyword)
-//                .or()
-//                .like("phone", keyword)
-//        );
-//        model.addAttribute("contacts", contacts);
-//
-//        return "search";
-//    }
 
 }
