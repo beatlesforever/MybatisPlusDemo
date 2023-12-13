@@ -17,6 +17,7 @@ public class Contact {
     private String name;
     private String phone;
     private String email;
-    private String imagePath;//储存头像的路径
+    private String imageContent; // 存储图片内容的字节数组
+
 
 }
